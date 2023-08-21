@@ -1,0 +1,14 @@
+#!/bin/bash
+#set -x
+source `dirname $0`/common.sh
+
+[ -e "$OBJECT"     ] || die "No firmware object, try running 'build'"
+
+# Reboot the pico into USB bootloader mode
+[ -d "$MOUNTPOINT" ] || picotool reboot -fu # IKR?
+
+# Copy the build file
+waitfor "$MOUNTPOINT"
+echo "Installing $OBJECT to $MOUNTPOINT"
+cp -v "$OBJECT" "$MOUNTPOINT"
+

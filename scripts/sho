@@ -1,0 +1,26 @@
+#!/bin/bash
+source `dirname $0`/common.sh
+#set -x
+
+
+#
+# Reboot the pico into application mode
+#
+echo "Restarting Pico device"
+picotool reboot -f
+sleep 1 # wait for the OS to notice the reboot and remove any serial device node
+
+#
+# Wait for serial device to (re-)appear, and connect to serial port
+#   (repeatedly, presuming any disconnects are due to new firmware being uploaded)
+#
+while :
+do
+      waitfor "$PORT" 30
+      [ -e "$PORT" ] && miniterm --raw $PORT $BAUD
+      stty sane
+      echo "...disconnected from $PORT"
+      [ "$1" = "once" ] && exit 0
+      echo "...hit ^C to quit, or wait for reconnect"
+      sleep 1
+done

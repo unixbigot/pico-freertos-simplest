@@ -1,0 +1,7 @@
+[ -d scripts ] && PATH=$PWD/scripts:$PATH
+PICO_SDK_PATH=/opt/pico-sdk
+PICO_TOOLCHAIN_PATH=`ls -1dt /opt/*arm-none-eabi* | head -1`
+for d in "$PWD/FreeRTOS-Kernel" /opt/FreeRTOS-Kernel ; do
+  if [ -d "$d" ] ; then FREERTOS_KERNEL_PATH="$d" ; break ; fi
+done
+export PATH PICO_SDK_PATH PICO_TOOLCHAIN_PATH FREERTOS_KERNEL_PATH
