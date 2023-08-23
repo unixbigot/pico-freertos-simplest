@@ -2,7 +2,7 @@
 include(../FreeRTOS_Kernel_import.cmake)
 
 add_executable(hello_rtos
-  hello_rtos.c
+  hello_rtos.cpp
 )
 
 target_include_directories(hello_rtos PRIVATE

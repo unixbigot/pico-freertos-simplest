@@ -7,7 +7,7 @@ include(pico_sdk_import.cmake)
 include(FreeRTOS_Kernel_import.cmake)
 
 
-project(pico-freertos-simplest C CXX ASM)
+project(Alitrax_HC_Multi C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
@@ -31,6 +31,7 @@ endif ( )
 add_subdirectory(blink)
 add_subdirectory(hello_usb)
 add_subdirectory(hello_rtos)
+add_subdirectory(test_task)
 
 add_compile_options(-Wall
         -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
